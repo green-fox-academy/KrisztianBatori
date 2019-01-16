@@ -1,0 +1,67 @@
+<head>
+    <title>Magnificent Blog</title>
+    <meta lang="hu">
+    
+    <link rel="stylesheet" type="text/css" href="blog.css">
+</head>
+
+<body>
+    
+    <div class="Nav">
+        <h1>How good is Green Fox</h1>
+    </div>
+    
+    <p>Add review<p>
+    
+    <div class="Title_text_field">
+        <label for="Title"><b>Score</b></label>
+
+        <input type="text" id="Title_field" name="Title" size="25" placeholder="Score...">
+    </div>
+    
+    <div class="Content_text_field">
+        <label for="Content"><b>Opinion</b></label>
+
+        <textarea id="Content_field" name="Content" rows="8" cols="100" placeholder="Opinion..."></textarea>
+    </div>
+    
+    <div class="Button">
+        <button style="height: 5%; width: 11%; border-radius: 6px;" class="Submit button" type="button" onclick="addPost('Posts');">Submit</button>
+    </div>
+    
+    <div>
+        <h2>Reviews</h2>
+        
+        <table id="Posts"></table>
+    </div>
+    
+    <script>
+    
+        function addPost(tableID) {
+
+            let tableRef = document.getElementById(tableID);
+
+            let newPost = tableRef.insertRow(-1);
+            
+            let newTitle = newPost.insertCell(0);
+            newTitle.style.fontSize = "22px";
+            newTitle.style.fontWeight = "Bold";
+
+            var newContent = newPost.insertCell(1);
+            newContent.style.fontSize = "17px";
+            newContent.style.paddingLeft = "2%";
+            
+            let newContentText = document.createTextNode(document.getElementById('Content_field').value);
+            newContent.appendChild(newContentText);
+            
+            let newTitleText = document.createTextNode(document.getElementById('Title_field').value);
+            newTitle.appendChild(newTitleText);
+            
+            document.getElementById('Title_field').value = "";
+            document.getElementById('Content_field').value = "";
+            
+        }
+    
+    </script>
+    
+</body>

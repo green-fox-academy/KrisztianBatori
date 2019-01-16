@@ -1,0 +1,38 @@
+.Nav {
+    background-color: black;
+    color: green;
+    padding-left: 10%;
+}
+body p {
+    font-size: 20px;
+}
+label {
+    display: block;
+    padding-bottom: 0.8%;
+}
+input, textarea {
+    border-style: solid;
+    border-width: 1px;
+    margin-bottom: 2%
+}
+.Button {
+    font-size: 15px;
+}
+.Button button {
+    background-color: gray;
+    border-style: solid;
+    border-width: 2px;
+    border-color: black;
+}
+table tr {
+    width: 620px;
+    display: block;
+    border-style: solid;
+    border-width: 1.25px;
+    border-color: black;
+    margin-bottom: 4%;
+}
+table td {
+    word-wrap: break-word;
+    display: block;
+}

@@ -1,0 +1,60 @@
+body {
+    font-size: 24px;
+    padding: 10% 10%;
+    background-image: url("assets/background.png");
+    font-family: consolas;
+}
+
+.Navigation-bar ul {
+    white-space: nowrap;
+    position: absolute;
+    top: 0px;
+    right: 0px;
+    line-height: 3;
+    font-size: 22px;
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    background-color: #333333;
+    text-indent: 63%;
+}
+
+li {
+    display: inline;
+}
+
+li a {
+    font-family: courier;
+    color: #ff0099;
+    padding: 1.5%;
+}
+li img {
+    position: absolute;
+    left: 10%;
+    top: 20%;
+}
+
+.Introduction h1 {
+    font-size: 64px;
+}
+
+.Introduction h3 {
+    color: deeppink;
+    font-size: 40px;
+}
+
+.Separator {
+    font-size: 32px;
+    padding-top: 4%;
+    padding-bottom: 1%;
+    text-align: center;
+}
+.Definitions h2 {
+    font-size: 50px;
+    text-align: center;
+    padding-bottom: 2%;
+}
+.Definitions h4 {
+    font-size: 30px;
+}
