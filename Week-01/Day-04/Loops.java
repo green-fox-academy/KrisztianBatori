@@ -156,6 +156,23 @@ public class Loops {
     }
 
     public static int subStr(String input, String q) {
-        return input.toLowerCase().indexOf(q.toLowerCase());
+        char first_c = q.charAt(0);
+        for (int i = 0; i < input.length(); i++) {
+            if (first_c == input.charAt(i)) {
+                if (input.charAt(i) == input.charAt(input.length() - 1)) {
+                    /* If the input's last and q's first
+                       character is identical,
+                       there is no need to execute the function further. */
+                    return -1;
+                }
+                for (int j = 1; j < q.length(); j++) {
+                    char next_c = q.charAt(j);
+                    if (next_c == input.charAt(i + j) && j + 1 == q.length()) {
+                        return i;
+                    }
+                }
+            }
+        }
+        return -1;
     }
 }
