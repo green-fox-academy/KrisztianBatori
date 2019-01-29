@@ -254,13 +254,6 @@ public class ExceptionsAndFiles {
 
     public static Integer getMostCommonNumber (String pathFile) {
         try {
-            ArrayList<Integer[]> list = (ArrayList<Integer[]>)Files.lines(Paths.get(pathFile))
-                                            .map(line -> line.split(";", 12)[11])
-                                            .map(line -> line.split(";"))
-                                            .map(numbers -> Stream.of(numbers).map(Integer::valueOf).toArray(Integer[]::new))
-                                            .collect(Collectors.toList());
-
-
             ArrayList<String[]> numbers = (ArrayList<String[]>)Files.lines(Paths.get(pathFile))
                     .map(line -> line.split(";", 12)[11])
                     .map(line -> line.split(";"))
