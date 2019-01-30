@@ -9,11 +9,13 @@ import java.util.Date;
 public class Main {
     public static void main(String[] args) {
 
-        // 14 - Blog
-        Blog blogPosts = new Blog(new ArrayList<>() {{
-            add(new BlogPost("Boss", "Attention", "Important stuff", new Date(2019, 9, 1)));
-            add(new BlogPost("King", "Servants!", "Not important stuff", new Date(1433, 12, 31)));
-            add(new BlogPost("HR", "Important!", "Stuff", new Date(2019, 1, 2)));
-        }});
+        // +1 - 5 trees
+        ArrayList<Tree> trees = new ArrayList<>() {{
+            add(new Tree("Yellow Birch", Color.YELLOW, 12, "Male"));
+            add(new Tree("Mopane", Color.GREEN, 23, "Female"));
+            add(new Tree("Olive", Color.PINK, 5, "Female"));
+            add(new Tree("Black walnut", Color.BLACK, 8, "Male"));
+            add(new Tree("Gymea Lily", Color.RED, 44, "Male"));
+        }};
     }
 }
