@@ -9,6 +9,6 @@ import java.util.Date;
 public class Main {
     public static void main(String[] args) {
 
-        // 03 - Animal
-        Animal dog = new Animal();
+        // 04 - Sharpie
+        Sharpie obj1 = new Sharpie("red", 0.1544465f);
 }
