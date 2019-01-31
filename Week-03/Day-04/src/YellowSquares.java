@@ -8,17 +8,7 @@ public class YellowSquares {
     public static void mainDraw(Graphics graphics) {
 
         drawSquares(graphics, 0, 0, 486, 486);
-
-        /*graphics.drawRect(241, 0, 2, 2);
-        graphics.drawRect(241, 4, 2, 2);
-        graphics.drawRect(239, 2, 2,2);
-        graphics.drawRect(243, 2, 2, 2);
-
-
-        graphics.drawRect(162, 0, 162, 162);
-        graphics.drawRect(162, 324, 162, 162);
-        graphics.drawRect(0, 162, 162,162);
-        graphics.drawRect(324, 162, 162, 162);*/
+        
     }
     public static void drawSquares (Graphics graphics, int x, int y, int width, int height) {
         if (width == 2 && height == 2) {
