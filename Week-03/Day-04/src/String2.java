@@ -4,7 +4,7 @@ public class String2 {
     }
     public static String removeX (String text) {
         if (text.contains("x")) {
-            return removeX(text.replace("x", ""));
+            return removeX(text.replaceFirst("x", ""));
         }
         else {
             return text;
