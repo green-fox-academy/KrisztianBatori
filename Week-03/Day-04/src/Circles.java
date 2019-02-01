@@ -11,21 +11,11 @@ public class Circles {
 
     public static void mainDraw(Graphics graphics) {
 
-        drawCircles(graphics, 0, 0, WIDTH, HEIGHT, 6, 0);
+        Circle circle = new Circle(new Color[] {Color.RED, Color.ORANGE, Color.BLACK,
+                Color.MAGENTA, Color.BLUE});
 
-    }
-    public static void drawCircles (Graphics graphics, int x, int y, int width, int height, int size, int colorIndex) {
-        if (size != 1) {
-            drawCircle(graphics, x, y, width, height, colorIndex);
-            drawCircles(graphics, x + width / 4, y, width / 2, height / 2, size - 1, colorIndex + 1);
-            drawCircles(graphics, x + width / 58, y + height / 3, width / 2, height / 2, size - 1, colorIndex + 1);
-            drawCircles(graphics, x + width / 2 - width / 58, y + height / 3, width / 2, height / 2, size - 1, colorIndex + 1);
-        }
-    }
+        circle.drawCircles(graphics, 0, 0, WIDTH, HEIGHT, 6, 0);
 
-    public static void drawCircle(Graphics graphics, int x, int y, int width, int height, int colorIndex) {
-        graphics.setColor(rainbowColors[colorIndex]);
-        graphics.drawOval(x, y, width, height);
     }
 
     static int WIDTH = 486;
@@ -48,6 +38,28 @@ public class Circles {
             super.paintComponent(graphics);
             super.setBackground(Color.WHITE);
             mainDraw(graphics);
+        }
+    }
+
+    public static class Circle {
+        Color[] drawColors;
+
+        Circle(Color[] newDrawColors) {
+            drawColors = newDrawColors;
+        }
+
+        public void drawCircles (Graphics graphics, int x, int y, int width, int height, int size, int colorIndex) {
+            if (size != 1) {
+                drawCircle(graphics, x, y, width, height, colorIndex);
+                drawCircles(graphics, x + width / 4, y, width / 2, height / 2, size - 1, colorIndex + 1);
+                drawCircles(graphics, x + width / 58, y + height / 3, width / 2, height / 2, size - 1, colorIndex + 1);
+                drawCircles(graphics, x + width / 2 - width / 58, y + height / 3, width / 2, height / 2, size - 1, colorIndex + 1);
+            }
+        }
+
+        public void drawCircle(Graphics graphics, int x, int y, int width, int height, int colorIndex) {
+            graphics.setColor(rainbowColors[colorIndex]);
+            graphics.drawOval(x, y, width, height);
         }
     }
 }
