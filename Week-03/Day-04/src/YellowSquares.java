@@ -7,8 +7,8 @@ import static javax.swing.JFrame.EXIT_ON_CLOSE;
 public class YellowSquares {
     public static void mainDraw(Graphics graphics) {
 
-        drawSquares(graphics, 0, 0, 486, 486);
-        
+        drawSquares(graphics, 0, 0, WIDTH, HEIGHT);
+
     }
     public static void drawSquares (Graphics graphics, int x, int y, int width, int height) {
         if (width == 2 && height == 2) {
