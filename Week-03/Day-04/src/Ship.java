@@ -44,6 +44,7 @@ public class Ship {
     }
 
     public int aliveCrewMembers() {
+
         return (int)crewNumber.stream().filter(pirate -> !pirate.isDead).count();
     }
 

@@ -7,6 +7,7 @@ public class Pirate {
     private int drinkCapacity = 5;
 
     public Pirate(boolean hasParrot) {
+
         this.hasParrot = hasParrot;
     }
 
