@@ -18,7 +18,7 @@ public class GreenFoxOrganization {
         }
 
         public void introduce () {
-            System.out.println("Hi, I'm " + name + ", a " + age + " year old " + gender + ".");
+            System.out.print("Hi, I'm " + name + ", a " + age + " year old " + gender + " ");
         }
 
         public void getGoal() {
@@ -80,6 +80,38 @@ public class GreenFoxOrganization {
         public void introduce() {
             super.introduce();
             System.out.println(level + " mentor.");
+        }
+    }
+
+    class Sponsor extends Person {
+        String company;
+        int hiredStudents;
+
+        public void hire() {
+            hiredStudents += 1;
+        }
+
+        Sponsor() {
+            super();
+            company = "Google";
+            hiredStudents = 0;
+        }
+
+        Sponsor(String name, int age, String gender, String company) {
+            super(name, age, gender);
+            this.company = company;
+        }
+
+        @Override
+        public void introduce() {
+            super.introduce();
+            System.out.println("who represents " + company + "and hired " + hiredStudents + "students so far.");
+        }
+
+        @Override
+        public void getGoal() {
+            super.getGoal();
+            System.out.println("Hire brilliant junior software developers.");
         }
     }
 
