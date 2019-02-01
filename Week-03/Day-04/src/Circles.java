@@ -6,9 +6,6 @@ import static javax.swing.JFrame.EXIT_ON_CLOSE;
 
 public class Circles {
 
-    static Color[] rainbowColors = new Color[] {Color.RED, Color.ORANGE, Color.BLACK,
-            Color.MAGENTA, Color.BLUE};
-
     public static void mainDraw(Graphics graphics) {
 
         Circle circle = new Circle(new Color[] {Color.RED, Color.ORANGE, Color.BLACK,
@@ -58,7 +55,7 @@ public class Circles {
         }
 
         public void drawCircle(Graphics graphics, int x, int y, int width, int height, int colorIndex) {
-            graphics.setColor(rainbowColors[colorIndex]);
+            graphics.setColor(drawColors[colorIndex]);
             graphics.drawOval(x, y, width, height);
         }
     }
