@@ -4,10 +4,12 @@ import java.util.List;
 
 public class GreenFoxOrganization {
 
-    class Person {
+    public static class Person {
         String name;
         int age;
         String gender;
+        String introduction = ".";
+        String goal = "Live for the moment.";
 
         Person() {
             this("Jane Doe", 30, "female");
@@ -20,15 +22,15 @@ public class GreenFoxOrganization {
         }
 
         public void introduce () {
-            System.out.print("Hi, I'm " + name + ", a " + age + " year old " + gender + " ");
+            System.out.println("Hi, I'm " + name + ", a " + age + " year old " + gender + introduction);
         }
 
         public void getGoal() {
-            System.out.println("My goal is: Live for the moment!");
+            System.out.println("My goal is: " + goal);
         }
     }
 
-    class Student extends Person {
+    public static class Student extends Person {
         String previousOrganization;
         int skippedDays;
 
@@ -45,14 +47,15 @@ public class GreenFoxOrganization {
         }
 
         @Override
-        public void getGoal() {
-            System.out.println("Be a junior software developer.");
+        public void introduce() {
+            super.introduction = " from " + previousOrganization + " who skipped " + skippedDays + " days from the course already.";
+            super.introduce();
         }
 
         @Override
-        public void introduce() {
-            super.introduce();
-            System.out.println("from " + previousOrganization + "who skipped " + skippedDays + "days from the course already");
+        public void getGoal() {
+            super.goal = "Be a junior software developer.";
+            super.getGoal();
         }
 
         public void skipDays(int numberOfDays) {
@@ -60,7 +63,7 @@ public class GreenFoxOrganization {
         }
     }
 
-    class Mentor extends Person {
+    public static class Mentor extends Person {
         String level;
 
         Mentor() {
@@ -74,18 +77,19 @@ public class GreenFoxOrganization {
         }
 
         @Override
-        public void getGoal() {
-            System.out.println("Educate brilliant junior software developers.");
+        public void introduce() {
+            super.introduction = " " + level + " mentor.";
+            super.introduce();
         }
 
         @Override
-        public void introduce() {
-            super.introduce();
-            System.out.println(level + " mentor.");
+        public void getGoal() {
+            super.goal = "Educate brilliant junior software developers.";
+            super.getGoal();
         }
     }
 
-    class Sponsor extends Person {
+    public static class Sponsor extends Person {
         String company;
         int hiredStudents;
 
@@ -106,18 +110,18 @@ public class GreenFoxOrganization {
 
         @Override
         public void introduce() {
+            super.introduction = " who represents " + company + " and hired " + hiredStudents + " students so far.";
             super.introduce();
-            System.out.println("who represents " + company + "and hired " + hiredStudents + "students so far.");
         }
 
         @Override
         public void getGoal() {
+            super.goal = "Hire brilliant junior software developers.";
             super.getGoal();
-            System.out.println("Hire brilliant junior software developers.");
         }
     }
 
-    public class Cohort {
+    public static class Cohort {
         String name;
         List<Student> students;
         List<Mentor> mentors;
@@ -132,7 +136,7 @@ public class GreenFoxOrganization {
             students.add(student);
         }
 
-        public void addStudent(Mentor mentor) {
+        public void addMentor(Mentor mentor) {
             mentors.add(mentor);
         }
 
@@ -142,7 +146,45 @@ public class GreenFoxOrganization {
     }
 
     public static void main(String[] args) {
+        ArrayList<Person> people = new ArrayList<>();
 
+        Person mark = new Person("Mark", 46, "male");
+        people.add(mark);
+        Person jane = new Person();
+        people.add(jane);
+        Student john = new Student("John Doe", 20, "male", "BME");
+        people.add(john);
+        Student student = new Student();
+        people.add(student);
+        Mentor gandhi = new Mentor("Gandhi", 148, "male", "senior");
+        people.add(gandhi);
+        Mentor mentor = new Mentor();
+        people.add(mentor);
+        Sponsor sponsor = new Sponsor();
+        people.add(sponsor);
+        Sponsor elon = new Sponsor("Elon Musk", 46, "male", "SpaceX");
+        people.add(elon);
 
+        student.skipDays(3);
+
+        for (int i = 0; i < 5; i++) {
+            elon.hire();
+        }
+
+        for (int i = 0; i < 3; i++) {
+            sponsor.hire();
+        }
+
+        for(Person person : people) {
+            person.introduce();
+            person.getGoal();
+        }
+
+        Cohort awesome = new Cohort("AWESOME");
+        awesome.addStudent(student);
+        awesome.addStudent(john);
+        awesome.addMentor(mentor);
+        awesome.addMentor(gandhi);
+        awesome.info();
     }
 }
