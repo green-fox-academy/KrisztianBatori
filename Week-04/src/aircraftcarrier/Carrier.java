@@ -5,9 +5,9 @@ import java.util.Arrays;
 import java.util.stream.Collectors;
 
 public class Carrier {
-    private ArrayList<Aircraft> aircrafts;
+    public ArrayList<Aircraft> aircrafts;
     private int ammoStorage;
-    private int healthPoints;
+    public int healthPoints;
 
     Carrier(ArrayList<Aircraft> aircrafts, int ammoStorage, int healthPoints) {
         this.aircrafts = aircrafts;
@@ -51,14 +51,41 @@ public class Carrier {
 
     public void fight(Carrier enemyCarrier) {
         while (ammoStorage != 0) {
-            fill();
+            // Attacking enemy carrier.
+            enemyCarrier.healthPoints -= getTotalDamage();
+            if (enemyCarrier.healthPoints <= 0) {
+                break;
+            }
             aircrafts = (ArrayList<Aircraft>)aircrafts.stream()
                     .map(aircraft -> {
                         aircraft.fight();
                         return aircraft;
                     })
                     .collect(Collectors.toList());
+            fill();
+
+            // Enemy carrier counter-attacking.
+            healthPoints -= enemyCarrier.getTotalDamage();
+            if (healthPoints <= 0) {
+                break;
+            }
+            enemyCarrier.aircrafts = (ArrayList<Aircraft>)enemyCarrier.aircrafts.stream()
+                    .map(aircraft -> {
+                        aircraft.fight();
+                        return aircraft;
+                    })
+                    .collect(Collectors.toList());
+            enemyCarrier.fill();
         }
+    }
+
+    public int getTotalDamage() {
+        return Arrays.stream(
+                aircrafts.stream()
+                        .map(aircraft -> aircraft.base_damage * aircraft.ammo_store)
+                        .mapToInt(i -> i)
+                        .toArray()
+        ).sum();
     }
 
     public void getStatus() {
@@ -66,13 +93,7 @@ public class Carrier {
             System.out.println("It's dead Jim :(");
         }
         else {
-            int totalDamage = Arrays.stream(
-                    aircrafts.stream()
-                            .map(aircraft -> aircraft.base_damage * aircraft.ammo_store)
-                            .mapToInt(i -> i)
-                            .toArray()
-            ).sum();
-            System.out.println("HP: " + healthPoints + ", Aircraft count: " + aircrafts.size() + ", Ammo Storage: " + ammoStorage + ", Total damage: " + totalDamage);
+            System.out.println("HP: " + healthPoints + ", Aircraft count: " + aircrafts.size() + ", Ammo Storage: " + ammoStorage + ", Total damage: " + getTotalDamage());
             System.out.println("Aircrafts:");
             for (Aircraft aircraft: aircrafts) {
                 System.out.println("Type: " + aircraft.type + ", Ammo: " + aircraft.ammo_store + ", Base Damage: " + aircraft.base_damage + ", All Damage: " + aircraft.fight());
