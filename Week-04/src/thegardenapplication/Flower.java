@@ -1,10 +1,7 @@
 package thegardenapplication;
 
-public class Flower {
-    String color;
-    double waterAmount;
-
-    public void watering(int wateringAmount) {
-        wateringAmount += wateringAmount * 0.75;
+public class Flower extends Plant {
+    Flower() {
+        super.absorbAmount = 0.75;
     }
 }
