@@ -1,4 +1,5 @@
 package comparable;
+
 import java.lang.*;
 
 class Domino implements Comparable<Domino> {
@@ -20,7 +21,7 @@ class Domino implements Comparable<Domino> {
 
     @Override
     public int compareTo(Domino o) {
-        return toString().compareTo(o.toString());
+        return this.toString().compareTo(o.toString());
     }
 
     @Override

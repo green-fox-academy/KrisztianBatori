@@ -1,5 +1,3 @@
-package thegardenapplication;
-
 public class Plant {
     String color;
     String type;

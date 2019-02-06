@@ -1,5 +1,3 @@
-package aircraftcarrier;
-
 public class Aircraft {
     public final String type;
     private int max_ammo;

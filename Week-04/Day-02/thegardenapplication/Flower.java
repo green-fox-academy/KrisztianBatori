@@ -1,5 +1,3 @@
-package thegardenapplication;
-
 public class Flower extends Plant {
     Flower(String color) {
         super.color = color;

@@ -8,7 +8,7 @@ public class GreenFoxOrganization {
         String name;
         int age;
         String gender;
-        String introduction = ".";
+        String introduction = "";
         String goal = "Live for the moment.";
 
         Person() {
