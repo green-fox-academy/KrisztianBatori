@@ -7,6 +7,6 @@ public class Plant {
     double absorbAmount;
 
     public void watering(int wateringAmount) {
-        wateringAmount += wateringAmount * absorbAmount;
+        waterAmount += wateringAmount * absorbAmount;
     }
 }
