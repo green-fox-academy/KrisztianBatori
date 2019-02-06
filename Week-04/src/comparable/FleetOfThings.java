@@ -1,5 +1,8 @@
 package comparable;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class FleetOfThings {
     public static void main(String[] args) {
         Fleet fleet = new Fleet();
@@ -15,5 +18,11 @@ public class FleetOfThings {
         fleet.add(new Thing("Eat lunch") {{ this.complete(); }} );
 
         System.out.println(fleet);
+
+        List<Fleet> fleets = new ArrayList<>() {{add(fleet);}};
+
+        for (Fleet t: fleets) {
+            t.printAllFields();
+        }
     }
 }

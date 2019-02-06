@@ -1,14 +1,15 @@
 package comparable;
 
+import printable.Printable;
+
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.List;
 import java.util.stream.Collectors;
 
 /**
  * Created by aze on 2017.03.29..
  */
-public class Fleet {
+public class Fleet implements Printable {
     private ArrayList<Thing> things;
 
     public Fleet() {
@@ -35,5 +36,12 @@ public class Fleet {
             result += (i+1) + " " + mergedList.get(i) + "\n";
         }
         return result;
+    }
+
+    @Override
+    public void printAllFields() {
+        for (Thing thing: things) {
+            System.out.println(thing);
+        }
     }
 }
