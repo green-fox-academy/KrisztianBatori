@@ -26,13 +26,13 @@ public class Fleet {
         Collections.sort(thingsCompleted);
         Collections.sort(thingsNotCompleted);
 
-        ArrayList<Thing> newList = new ArrayList<>();
-        newList.addAll(thingsCompleted);
-        newList.addAll(thingsNotCompleted);
+        ArrayList<Thing> mergedList = new ArrayList<>();
+        mergedList.addAll(thingsCompleted);
+        mergedList.addAll(thingsNotCompleted);
 
         String result = "";
-        for(int i = 0; i < newList.size(); i++) {
-            result += (i+1) + " " + newList.get(i) + "\n";
+        for(int i = 0; i < mergedList.size(); i++) {
+            result += (i+1) + " " + mergedList.get(i) + "\n";
         }
         return result;
     }
