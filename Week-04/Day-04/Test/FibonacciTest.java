@@ -12,6 +12,12 @@ public class FibonacciTest {
     @Test
     public void fibonacci_InitializedWithZero_ReturnZero() {
         assertTrue(0 == Fibonacci.fibonacci(0));
+        assertTrue(0 == Fibonacci.fibonacci(-0));
+    }
+
+    @Test
+    public void fibonacci_InitializedWithNegativeNumber_ReturnZero() {
+        assertTrue(0 == Fibonacci.fibonacci(-1));
     }
 
     @Test
