@@ -18,12 +18,17 @@ public class CalculatorPrepared {
     }
 
     public Integer getSum (){
-        Integer sum = 0;
-        for (Integer number : numbers) {
-            sum += number;
+        if (numbers.isEmpty() || numbers.contains(null)) {
+            return null;
         }
+        else {
+            Integer sum = 0;
+            for (Integer number : numbers) {
+                sum += number;
+            }
 
-        return sum;
+            return sum;
+        }
     }
 
     public void addNumber(int number){
