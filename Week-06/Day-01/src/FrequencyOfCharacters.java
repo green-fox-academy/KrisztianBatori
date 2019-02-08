@@ -65,7 +65,7 @@ public class FrequencyOfCharacters {
                                  .distinct()
                                  .mapToObj(c -> Character.toString((char) c))
                                  .collect(Collectors.joining())
-                                 .toCharArray()) // str.toCharArray() would result a very long waiting time {
+                                 .toCharArray()) /* str.toCharArray() would result a very long waiting time*/ {
                         put(c, (int)str.chars()
                                 .filter(character -> character == c)
                                 .count());
