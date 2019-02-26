@@ -1,0 +1,23 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Getting Started: Serving Web Content</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+</head>
+<body style="background-color: dodgerblue">
+<table style="border-collapse: collapse; border-radius: 10px; overflow: hidden;">
+    <tbody style="text-indent: 4%">
+    <tr style="font-size: xx-large; color: gray; background-color: black; border-bottom-style: solid;">
+        <td width="350" height="100" style="border-right-style: solid; border-right-width: 1.5px; border-color: gray;">Month</td>
+        <td width="400" height="100">Sales</td>
+    </tr>
+    <th:block th:each="sale : ${sales}">
+        <tr th:style="${'background-color: ' + rowColor.pickColor() + '; font-size: x-large; color: gray; border-top-style: solid; border-top-width: 1.5px;'}">
+            <td width="350" height="95" style="border-right-style: solid; border-right-width: 1.5px;" th:text="${sale[0]}"></td>
+            <td width="400" height="95" th:text="${'$ ' + sale[1]}"></td>
+        </tr>
+    </th:block>
+    </tbody>
+</table>
+</body>
+</html>
