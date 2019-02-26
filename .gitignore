@@ -6,3 +6,8 @@ out
 Day-04.iml
 Week-04.iml
 *.iml
+*.gradle
+*.jar
+*.properties
+gradlew
+settings.gradle
