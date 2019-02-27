@@ -1,0 +1,21 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Getting Started: Serving Web Content</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+</head>
+<style>
+    input:invalid {
+        border: 2px solid red;
+    }
+</style>
+<body>
+<form name="signup" action=https://newsletter-ws.herokuapp.com/register method="post">
+    Username:<input type="text" name="name" required><br>
+    E-mail:<input type="email" name="email" pattern=".+@.+.com"required><br>
+    Password:<input type="password" name="password" required><br>
+    Password again:<input type="password" name="passwordConfirmation" required><br>
+    <input type="submit" value="Submit">
+</form>
+</body>
+</html>

@@ -1,0 +1,56 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Getting Started: Serving Web Content</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+</head>
+<style>
+    input:focus {
+        outline: none !important;
+        border-style: solid;
+        border-color: green;
+    }
+    input:invalid {
+        border: 2px solid red;
+    }
+</style>
+<body style="background-color: lightgray" OnLoad="document.myform.mytextfield.focus();">
+<div style="width:500px;height:400px;border: none; background-color: white; position: fixed; top: 22%; left: 34%; text-indent: 10%;">
+    <p style="font-size: x-large; margin-top: 8%">ACCOUNT LOGIN</p>
+    <p style="font-size: medium; margin-top: 8%">USERNAME</p>
+    <form name="myform">
+        <input type="text" name="mytextfield" id="username" maxlength="25" size="46%" style="line-height: 3.5em">
+    </form>
+    <p style="font-size: medium; margin-top: 8%">PASSWORD</p>
+    <form name="myform2">
+        <input type="password" name="mypassword" id="password" maxlength="25" size="46%" style="line-height: 3.5em">
+    </form>
+    <p style="font-size: small; margin-top: 2%; text-indent: 57%; color: gray;">Forgot password?</p>
+    <button type="button" onclick="
+    if (document.getElementById('username').value == '') {
+        myform.mytextfield.required = true;
+    }
+    else {
+        myform.mytextfield.required = false;
+    }
+    if (document.getElementById('password').value == '') {
+        myform2.mypassword.required = true;
+    }
+    else {
+        myform2.mypassword.required = false;
+    }"
+            }
+            style="background-color: black;
+            color: lightgray;
+            border-radius: 30px;
+            border-style: none;
+            height: 40px;
+            width: 110px;
+            font-size: small;
+            position: fixed;
+            left: 37.5%">
+        Login
+    </button>
+</div>
+</body>
+</html>
