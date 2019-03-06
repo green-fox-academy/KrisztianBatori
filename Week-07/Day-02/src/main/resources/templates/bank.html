@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Thymeleaf Exercise #</title>
+    <link rel="stylesheet" th:href="@{/style.css}" />
+    <meta charset="utf-8" />
+</head>
+<body>
+<div id="table" th:style="'display: ' + ${table} + ';'">
+    <table>
+        <tbody>
+        <tr style="font-size: xx-large; color: black; background-color: cyan;">
+            <td>Name</td>
+            <td>Balance</td>
+            <td>Species</td>
+            <td>Status</td>
+            <td>Personality</td>
+            <td>Database ID</td>
+        </tr>
+        <th:block th:each="bankAccount : ${bankAccounts}">
+            <tr>
+                <td th:text="${bankAccount.getName()}"></td>
+                <td th:text="${@thymeMath.roundToTwoDecimals(bankAccount.getBalance())} + ' pengő'"></td>
+                <td th:text="${bankAccount.getAnimalType()}"></td>
+                <td th:utext="${bankAccount.isKing()} ? '<p class=&quot;shine&quot;>King</p>' : 'Servant'"></td>
+                <td th:switch="${bankAccount.isGoodGuy()}">
+                    <p th:case="true" th:utext="'<p class=&quot;goodGuyStyle&quot;>Good one</p>'"></p>
+                    <p th:case="false" th:utext="'<p class=&quot;badGuyStyle&quot;>Bad Guy</p>'"></p>
+                </td>
+                <td th:text="${bankAccountStat.index}"></td>
+            </tr>
+        </th:block>
+        </tbody>
+    </table>
+    <p style="color: lightsalmon; font-size: x-large; margin-bottom: 0px">Raise balance</p>
+    <form action="raise" method="post">
+        <button type="submit"></button>
+    </form>
+    <p style="color: lightsalmon; font-size: x-large; margin-bottom: 0px">Show table</p>
+    <form action="show" method="post">
+        <button type="submit"></button>
+    </form>
+    <p style="color: lightsalmon; font-size: x-large; margin-bottom: 0px">Add new bank account:</p>
+    <form action="#" th:action="@{/addAccount}" th:object="${account}" method="post">
+        <input type="text" th:field="*{name}"/>
+        <input type="number" th:field="*{balance}"/>
+        <input type="text" th:field="*{animalType}"/>
+        <input type="checkbox" th:field="*{king}"/>
+        <input type="checkbox" th:field="*{goodGuy}"/>
+        <input type="submit"/>
+    </form>
+</div>
+<p th:utext="${htmlString}"></p>
+</body>
+</html>

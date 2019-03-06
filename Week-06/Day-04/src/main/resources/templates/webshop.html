@@ -1,0 +1,95 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Getting Started: Serving Web Content</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+</head>
+<style>
+    td {
+        width: 4em;
+        height: 3.5em;
+    }
+    button {
+        border-radius: 7px;
+        border-style: none;
+        background-color: orangered;
+        color: white;
+        height: 2.5em;
+        margin-bottom: 0.5%;
+        font-size: 0.875em;
+        margin-right: 0.5%;
+    }
+
+    form {
+        display: inline;
+    }
+    hr {
+        padding: 0px;
+        margin: 0px;
+    }
+    input {
+        font-size: xx-large;
+        color: gray;
+        width: 44%;
+        border-style: solid;
+        border-radius: 5px;
+        border-color: orangered;
+        display: inline;
+    }
+</style>
+<body style="background-color: white">
+<h1 style="font-size: 3em; color: cyan">My shop</h1>
+<hr style="border-color: cyan; margin-bottom: 2%; margin-top: -2%">
+<div id="buttons">
+    <form action="/only-available" method="get">
+        <button type="submit">ONLY AVAILABLE</button>
+    </form>
+
+    <form action="/cheapest-first" method="get">
+        <button type="submit">CHEAPEST FIRST</button>
+    </form>
+
+    <form action="/contains-nike" method="get">
+        <button type="submit">CONTAINS NIKE</button>
+    </form>
+
+    <form action="/average-stock" method="get">
+        <button type="submit">AVERAGE STOCK</button>
+    </form>
+
+    <form action="/most-expensive" method="get">
+        <button type="submit">MOST EXPENSIVE AVAILABLE</button>
+    </form>
+</div>
+<div id="search">
+    <p style="color: lightsalmon; font-size: x-large; margin-bottom: 0px">Search for:</p>
+    <form action="contains-item" method="post">
+        <input name="itemName" placeholder="...something like nike" style="margin-bottom: 2%">
+        <button type="submit" style="font-size: x-large !important; margin-left: 1.2% !important;">Search</button>
+    </form>
+</div>
+<div id="table" th:style="'display: ' + ${table} + ';'">
+    <table>
+        <tbody style="text-align: center;">
+        <tr style="font-size: xx-large; color: black; background-color: cyan;">
+            <td>Name</td>
+            <td style="width: 11em;">Description</td>
+            <td>Price</td>
+            <td>Quantity of stock</td>
+        </tr>
+        <th:block th:each="shoppingItem : ${shoppingList}">
+            <tr>
+                <td th:text="${shoppingItem.getName()}" style="text-align: left; font-size: 1.2em"></td>
+                <td th:text="${shoppingItem.getDescription()}" style="text-align: left; text-indent: 2%"></td>
+                <td th:text="${shoppingItem.getPrice()} + ' pengő'"></td>
+                <td th:text="${shoppingItem.getQuantity()}"></td>
+            </tr>
+        </th:block>
+        </tbody>
+    </table>
+</div>
+<div id="result" th:style="'display: ' + ${result} + ';'">
+    <p th:text="${name} + ${value}" style="font-size: 2.2em; font-family: 'Arial Rounded MT Bold'; margin-top: 5%; position: fixed; bottom: 79.5%;"></p>
+</div>
+</body>
+</html>

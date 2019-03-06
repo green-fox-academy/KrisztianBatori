@@ -11,3 +11,4 @@ Week-04.iml
 *.properties
 gradlew
 settings.gradle
+*.bat
