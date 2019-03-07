@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Thymeleaf Exercise #</title>
+    <link rel="stylesheet" th:href="@{/style.css}" />
+    <meta charset="utf-8" />
+</head>
+<body>
+<p th:text="'Students: ' + ${studentCount}"></p>
+<p th:text="${result}"></p>
+<table>
+    <tbody>
+    <th:block th:each="student : ${students}">
+        <tr>
+            <td th:text="${student}"></td>
+        </tr>
+    </th:block>
+    </tbody>
+</table>
+<form action="/gfa" method="get">
+    <button type="submit">Homepage</button>
+</form>
+<form action="/gfa/list" method="get">
+    <button type="submit">Unordered</button>
+</form>
+<form action="/gfa/add" method="post">
+    <input name="student" type="text">
+    <button type="submit">Add new student</button>
+</form>
+<form action="/gfa/check" method="post">
+    <input name="student" type="text">
+    <button type="submit">Check student</button>
+</form>
+</body>
+</html>

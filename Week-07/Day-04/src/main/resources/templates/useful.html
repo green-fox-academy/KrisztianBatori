@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Thymeleaf Exercise #</title>
+    <link rel="stylesheet" th:href="@{/style.css}" />
+    <meta charset="utf-8" />
+</head>
+<body th:style="'background-color: ' + ${backgroundColor}">
+<form action="/useful" method="get">
+    <button type="submit">useful</button>
+</form>
+<form action="/useful/colored" method="get">
+    <button type="submit">colored</button>
+</form>
+<form name="email" action="/useful/email?email=is@this.valid" method="post">
+    <button type="submit">email valid</button>
+</form>
+<form name="email" action="/useful/email?email=not_valid_email.com" method="post">
+    <button type="submit">email not valid</button>
+</form>
+<form name="caesarEncode" action="/useful/encoding/fybnqmf, -1" method="post">
+    <button type="submit">decode fybnqmf</button>
+</form>
+<form name="caesarDecode" action="/useful/encoding/example, 1" method="post">
+    <button type="submit">encode example </button>
+</form>
+<p th:text="${email}" th:style="'color: ' + ${emailColor}"></p>
+<p th:text="${text}"></p>
+</body>
+</html>
