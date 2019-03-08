@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Thymeleaf Exercise #</title>
+    <link rel="stylesheet" th:href="@{/style.css}" />
+    <meta charset="utf-8" />
+</head>
+<body>
+<ul>
+    <li><a href="/">Information</a></li>
+</ul>
+<img src="/greenfox.png" height="200" width="200">
+<p th:text="'This is ' + ${fox.getName()} +
+            '. Currently living on ' + ${fox.getFood()} +
+            ' and ' + ${fox.getDrink()} +
+            '. He knows ' + ${fox.getTricks().size()} + ' tricks.'"></p>
+<h1>Known tricks</h1>
+<ul>
+    <th:block th:each="trick : ${fox.getTricks()}">
+        <li th:text="${trick}"></li>
+    </th:block>
+</ul>
+</body>
+</html>
