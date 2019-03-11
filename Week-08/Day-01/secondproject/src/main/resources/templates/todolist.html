@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Thymeleaf Exercise #</title>
+    <link rel="stylesheet" th:href="@{/style.css}" />
+    <meta charset="utf-8" />
+</head>
+<body>
+<h1 style="text-indent: 5%">TODOS FOR TODAY</h1>
+<table>
+    <tr class="tableHeader">
+        <td>ID</td>
+        <td style="text-align: center">ACTION</td>
+        <td>DONE</td>
+        <td>URGENT</td>
+    </tr>
+    <tr class="record" th:each="todo : ${todos}">
+        <td th:text="${todo.getId()}"></td>
+        <td th:text="${todo.getTitle()}"></td>
+        <td th:text="${todo.isDone()}"></td>
+        <td th:text="${todo.isUrgent()}"></td>
+        <td>
+            <form style="border-style: none;" th:action="'/todo/' + ${todo.getId()} + '/delete'" method="post">
+                <button type="submit">delete</button>
+            </form>
+        </td>
+        <td>
+            <form style="border-style: none;" method="get">
+                <a th:href="'/todo/' + ${todo.getId()} + '/edit'">edit</a>
+            </form>
+        </td>
+    </tr>
+</table>
+<a href="/todo/add">Add new todo</a>
+</body>
+</html>

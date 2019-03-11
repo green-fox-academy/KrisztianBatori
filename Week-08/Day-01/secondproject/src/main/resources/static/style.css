@@ -1,0 +1,18 @@
+table {
+    margin-left: 4.2%;
+}
+
+.tableHeader {
+    font-size: large;
+    font-weight: bold;
+}
+
+.record {
+    text-align: left;
+    white-space: nowrap;
+}
+
+.record td {
+    border-style: solid;
+    border-width: thin;
+}

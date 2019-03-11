@@ -1,0 +1,9 @@
+CREATE DATABASE IF NOT EXISTS todolists;
+
+SET SQL_SAFE_UPDATES = 0;
+
+USE todolists;
+
+SHOW TABLES;
+
+SELECT * FROM todo;
