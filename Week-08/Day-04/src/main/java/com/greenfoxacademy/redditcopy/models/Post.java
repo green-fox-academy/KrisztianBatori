@@ -21,6 +21,7 @@ public class Post {
     private int postTotalVotes;
     private int postTotalUpvotes;
     private int postTotalDownvotes;
+    private String postUrl;
 
     public Post() {
 
