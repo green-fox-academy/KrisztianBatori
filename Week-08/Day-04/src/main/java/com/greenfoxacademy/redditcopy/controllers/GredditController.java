@@ -5,10 +5,7 @@ import com.greenfoxacademy.redditcopy.services.PostService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 @Controller
 @RequestMapping("/greddit")
@@ -36,6 +33,24 @@ public class GredditController {
     @PostMapping("/addPost")
     public String showAddPostPage(@ModelAttribute(name = "post") Post post) {
         postService.getPostRepository().save(post);
+        return "redirect:/greddit/";
+    }
+
+    @GetMapping(value = "/upvotePost/{id}")
+    public String upvotePost(@PathVariable long id) {
+        Post modifiedPost = postService.getPostRepository().findById(id).orElse(null);
+        modifiedPost.setPostTotalUpvotes(modifiedPost.getPostTotalUpvotes() + 1);
+        modifiedPost.setPostTotalVotes(modifiedPost.getPostTotalVotes() + 1);
+        postService.getPostRepository().save(modifiedPost);
+        return "redirect:/greddit/";
+    }
+
+    @GetMapping(value = "/downvotePost/{id}")
+    public String downvotePost(@PathVariable long id) {
+        Post modifiedPost = postService.getPostRepository().findById(id).orElse(null);
+        modifiedPost.setPostTotalDownvotes(modifiedPost.getPostTotalDownvotes() + 1);
+        modifiedPost.setPostTotalVotes(modifiedPost.getPostTotalVotes() - 1);
+        postService.getPostRepository().save(modifiedPost);
         return "redirect:/greddit/";
     }
 

@@ -43,10 +43,10 @@
         <td class="col-md-1"></td>
         <td class="col-md-1" th:text="${post.getPostTotalVotes()}"></td>
         <td class="col-md-1">
-            <a href="/greddit/upvotePost" th:method="'post'">+</a>
+            <a th:href="'/greddit/upvotePost/' + ${post.getPostId()}">+</a>
         </td>
         <td class="col-md-1">
-            <a href="/greddit/downvotePost" th:method="'post'">-</a>
+            <a th:href="'/greddit/downvotePost/' + ${post.getPostId()}">-</a>
         </td>
         <td class="col-md-2">
             <a href="/greddit/addPost" th:text="${post.getPostTitle()}"></a>
