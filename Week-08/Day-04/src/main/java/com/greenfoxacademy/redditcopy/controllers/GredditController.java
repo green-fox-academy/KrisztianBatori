@@ -54,5 +54,11 @@ public class GredditController {
         return "redirect:/greddit/";
     }
 
+    @GetMapping(value = "/showPost/{id}")
+    public String downvotePost(Model model, @PathVariable() long id) {
+        model.addAttribute("gifName", postService.getPostRepository().findById(id).orElse(null).getPostUrl());
+        return "showpost";
+    }
+
 
 }

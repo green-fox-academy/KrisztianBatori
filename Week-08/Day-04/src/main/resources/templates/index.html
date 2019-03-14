@@ -49,7 +49,7 @@
             <a th:href="'/greddit/downvotePost/' + ${post.getPostId()}">-</a>
         </td>
         <td class="col-md-2">
-            <a href="/greddit/addPost" th:text="${post.getPostTitle()}"></a>
+            <a th:href="'/greddit/showPost/' + ${post.getPostId()}" th:text="${post.getPostTitle()}"></a>
         </td>
     </tr>
 </table>
