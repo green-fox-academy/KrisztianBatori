@@ -4,7 +4,9 @@ import com.greenfoxacademy.redditcopy.models.Post;
 import com.greenfoxacademy.redditcopy.services.PostService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
@@ -19,8 +21,14 @@ public class GredditController {
     }
 
     @GetMapping({"", "/"})
-    public String showMainPage() {
+    public String showMainPage(Model model) {
+        model.addAttribute("posts", postService.getPostRepository().findAll());
         return "index";
+    }
+
+    @GetMapping("/addPost")
+    public String showAddPostPage() {
+        return "addpost";
     }
 
 

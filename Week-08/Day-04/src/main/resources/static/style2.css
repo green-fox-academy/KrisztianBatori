@@ -1,0 +1,25 @@
+.background {
+    background-color: lightgreen;
+}
+.mainImage {
+    margin-top: 2%;
+    margin-left: 83%;
+}
+
+.glow {
+    font-size: 80px;
+    color: #fff;
+    text-align: center;
+    -webkit-animation: glow 1s ease-in-out infinite alternate;
+    -moz-animation: glow 1s ease-in-out infinite alternate;
+    animation: glow 1s ease-in-out infinite alternate;
+}
+
+@-webkit-keyframes glow {
+    from {
+        text-shadow: 0 0 10px #7CFC00, 0 0 20px #32CD32, 0 0 30px #00FF00, 0 0 40px #3CB371, 0 0 50px #98FB98, 0 0 60px #90EE90, 0 0 70px #008000;
+    }
+    to {
+        text-shadow: 0 0 20px #228B22, 0 0 30px #006400, 0 0 40px #008000, 0 0 50px #2E8B57, 0 0 60px #32CD32, 0 0 70px #7CFC00, 0 0 80px #3CB371;
+    }
+}
