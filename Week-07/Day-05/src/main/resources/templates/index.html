@@ -10,15 +10,15 @@
     <li><a href="/">Information</a></li>
 </ul>
 <img src="/greenfox.png" height="200" width="200">
-<p th:text="'This is ' + ${fox.getName()} +
-            '. Currently living on ' + ${fox.getFood()} +
-            ' and ' + ${fox.getDrink()} +
-            '. He knows ' + ${fox.getTricks().size()} + ' tricks.'"></p>
+<br>
+<p class="paragraph" th:text="'This is ' + ${fox.getName()} + '. '"></p>
+<p class="paragraph" th:text="${!fox.getFood().isEmpty()} ? 'Currently living on ' + ${fox.getFood()} + ' '"></p>
+<p class="paragraph" th:text="${!fox.getDrink().isEmpty()} ? 'and ' + ${fox.getDrink()} + '. '"></p>
+<p class="paragraph" th:text="'He knows ' + ${fox.getTricks().size()} + ' tricks.'"></p>
+
 <h1>Known tricks</h1>
-<ul>
-    <th:block th:each="trick : ${fox.getTricks()}">
-        <li th:text="${trick}"></li>
-    </th:block>
-</ul>
+
+<p th:utext="${fox.getTricks().size() != 0} ? '<p th:style=&quot;color: red;&quot;>LOL</p>' : '<p>You know no tricks, yet. Go and learn some.</p>'"></p>
+
 </body>
 </html>
