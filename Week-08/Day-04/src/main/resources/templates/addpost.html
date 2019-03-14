@@ -12,6 +12,16 @@
 <img class="mainImage" src="/greenfox2.png" height="10%" width="10%">
 
 <span class="glow" style="color: green; position: absolute; top: 5%; left: 38%">New post</span>
+<br><br><br>
+<form action="/greddit/addPost" th:object="${post}" method="post">
+    <div class="row">
+        <span>
+            <input th:field="*{postTitle}" class="gate" id="class" type="text" placeholder="Post title" /><label for="class">Title</label>
+            <br><br><br>
+            <button type="submit">Submit</button>
+        </span>
+    </div>
+</form>
 
 
 </body>

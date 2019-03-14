@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -27,8 +28,15 @@ public class GredditController {
     }
 
     @GetMapping("/addPost")
-    public String showAddPostPage() {
+    public String showAddPostPage(Model model) {
+        model.addAttribute("post", new Post());
         return "addpost";
+    }
+
+    @PostMapping("/addPost")
+    public String showAddPostPage(@ModelAttribute(name = "post") Post post) {
+        postService.getPostRepository().save(post);
+        return "redirect:/greddit/";
     }
 
 
