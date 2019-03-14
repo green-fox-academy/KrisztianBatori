@@ -38,12 +38,19 @@
     Trending posts
 </h1>
 
-<table class="table table-striped table-hover" th:each="post : ${posts}">
-    <tr class="row">
+<table class="table" style="margin-top: 11%">
+    <tr style="color: white; background-color: limegreen; font-size: xx-large; border-style: solid" th:each="post : ${posts}">
+        <td class="col-md-1"></td>
         <td class="col-md-1" th:text="${post.getPostTotalVotes()}"></td>
-        <td class="col-md-1" th:text="${post.getPostTotalUpvotes()}"></td>
-        <td class="col-md-1" th:text="${post.getPostTotalDownvotes()}"></td>
-        <td class="col-md-1" th:text="${post.getPostTitle()}"></td>
+        <td class="col-md-1">
+            <a href="/greddit/upvotePost" th:method="'post'">+</a>
+        </td>
+        <td class="col-md-1">
+            <a href="/greddit/downvotePost" th:method="'post'">-</a>
+        </td>
+        <td class="col-md-2">
+            <a href="/greddit/addPost" th:text="${post.getPostTitle()}"></a>
+        </td>
     </tr>
 </table>
 

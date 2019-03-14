@@ -16,9 +16,9 @@
 <form action="/greddit/addPost" th:object="${post}" method="post">
     <div class="row">
         <span>
-            <input th:field="*{postTitle}" class="gate" id="class" type="text" placeholder="Post title" /><label for="class">Title</label>
+            <input maxlength="25" th:field="*{postTitle}" class="gate" id="class" type="text" placeholder="Post title" /><label for="class">Title</label>
             <br><br><br>
-            <button type="submit">Submit</button>
+            <button style="color: black" type="submit" class="btn btn-success btn-lg"><b>Submit</b></button>
         </span>
     </div>
 </form>
