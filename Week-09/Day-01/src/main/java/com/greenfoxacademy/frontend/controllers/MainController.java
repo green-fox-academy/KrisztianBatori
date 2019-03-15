@@ -2,11 +2,16 @@ package com.greenfoxacademy.frontend.controllers;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ObjectNode;
+import com.greenfoxacademy.frontend.models.ArraysResult;
 import com.greenfoxacademy.frontend.models.Doubling;
 import com.greenfoxacademy.frontend.models.Greet;
 import com.greenfoxacademy.frontend.models.Until;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.stream.Collectors;
 
 @RestController
 public class MainController {
@@ -71,6 +76,29 @@ public class MainController {
             return new ObjectMapper().valueToTree(
                     new Until(until.findValue("until").asInt(), action)
             );
+        }
+    }
+
+    @GetMapping(value = "/arrays")
+    public @ResponseBody ObjectNode arrayHandler(@RequestBody(required = false) ObjectNode arrays) {
+        if (arrays == null) {
+            ObjectNode objectNode = new ObjectMapper().createObjectNode();
+            objectNode.put("error", "Please provide what to do with the numbers!");
+            return objectNode;
+        }
+        else {
+            String objectNodeString = arrays.findValues("numbers")
+                                    .stream()
+                                    .map(json -> json.toString())
+                                    .collect(Collectors.toList())
+                                    .get(0);
+
+            String[] objectNodeArray = objectNodeString.substring(1, objectNodeString.length() - 1).split(",");
+
+            return new ObjectMapper().valueToTree(
+                    new ArraysResult(arrays.findValue("what").asText(),
+                            Arrays.asList(objectNodeArray)
+                    ));
         }
     }
 }
