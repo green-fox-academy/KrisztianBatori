@@ -2,16 +2,11 @@ package com.greenfoxacademy.frontend.controllers;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ObjectNode;
-import com.fasterxml.jackson.databind.util.JSONPObject;
 import com.greenfoxacademy.frontend.models.Doubling;
 import com.greenfoxacademy.frontend.models.Greet;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import com.greenfoxacademy.frontend.models.Until;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
-
-import java.util.OptionalInt;
 
 @RestController
 public class MainController {
@@ -60,6 +55,21 @@ public class MainController {
         else {
             return new ObjectMapper().valueToTree(
                     new Greet(name, title)
+            );
+        }
+    }
+
+    @PostMapping(value = "/dountil/{action}")
+    public @ResponseBody ObjectNode doUntil(@PathVariable(name = "action") String action,
+                                            @RequestBody(required = false) ObjectNode until) {
+        if (until == null) {
+            ObjectNode objectNode = new ObjectMapper().createObjectNode();
+            objectNode.put("error", "Please provide a number!");
+            return objectNode;
+        }
+        else {
+            return new ObjectMapper().valueToTree(
+                    new Until(until.findValue("until").asInt(), action)
             );
         }
     }
