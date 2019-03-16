@@ -28,10 +28,10 @@ public class LogService {
         logRepository.save(log);
     }
 
-    public LogEntry collectLogs() {
+    public LogEntry collectLogs(int count, int page, String search) {
         LogEntry logEntry = new LogEntry();
 
-        logRepository.findAllIdAndEndpointAndData().forEach(
+        logRepository.findAllIdAndEndpointAndData(count, page, search).forEach(
                 log -> {
                     ObjectNode objectNode = new ObjectMapper().createObjectNode();
                     objectNode.put("id", log[0].toString());

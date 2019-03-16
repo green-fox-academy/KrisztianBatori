@@ -157,9 +157,11 @@ public class MainController {
     }
 
     @GetMapping("/log")
-    public ObjectNode collectLogEntries() {
+    public ObjectNode collectLogEntries(@RequestParam(name = "count") int count,
+                                        @RequestParam(name = "page") int page,
+                                        @RequestParam(name = "search", required = false) String search) {
         return new ObjectMapper().valueToTree(
-                logService.collectLogs()
+                logService.collectLogs(count, page, search == null ? "" : search)
         );
     }
 
