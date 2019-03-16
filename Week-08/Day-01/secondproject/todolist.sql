@@ -1,9 +1,12 @@
 CREATE DATABASE IF NOT EXISTS todolists;
+CREATE DATABASE IF NOT EXISTS logslists;
 
 SET SQL_SAFE_UPDATES = 0;
 
 USE todolists;
 
-SHOW TABLES;
+SELECT * FROM post;
 
-SELECT * FROM todo;
+USE logslists;
+
+SELECT * FROM log;

@@ -2,24 +2,32 @@ package com.greenfoxacademy.frontend.controllers;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ObjectNode;
-import com.greenfoxacademy.frontend.models.ArraysResult;
-import com.greenfoxacademy.frontend.models.Doubling;
-import com.greenfoxacademy.frontend.models.Greet;
-import com.greenfoxacademy.frontend.models.Until;
+import com.greenfoxacademy.frontend.models.*;
+import com.greenfoxacademy.frontend.services.LogService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
-import java.util.ArrayList;
+import java.sql.Timestamp;
 import java.util.Arrays;
+import java.util.Date;
 import java.util.stream.Collectors;
 
 @RestController
 public class MainController {
 
+    private LogService logService;
+
+    @Autowired
+    MainController(LogService logService) {
+        this.logService = logService;
+    }
+
     @RequestMapping("/")
     public ModelAndView index () {
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("index");
+        logService.saveLog(new Log(new Timestamp(new Date().getTime()), "/", "index"));
         return modelAndView;
     }
 
@@ -28,12 +36,21 @@ public class MainController {
         if (input == null) {
             ObjectNode objectNode = new ObjectMapper().createObjectNode();
             objectNode.put("error", "Please provide an input!");
+            logService.saveLog(new Log(new Timestamp(new Date().getTime()),
+                    "/doubling",
+                    String.format("input=%s", objectNode.findValue("error"))));
             return objectNode;
         }
         else {
-            return new ObjectMapper().valueToTree(
+            ObjectNode objectNode = new ObjectMapper().valueToTree(
                     new Doubling(input, input * 2)
             );
+
+            logService.saveLog(new Log(new Timestamp(new Date().getTime()),
+                    "/doubling",
+                    String.format("input=%s", objectNode.findValue("result"))));
+
+            return objectNode;
         }
     }
 
@@ -55,12 +72,17 @@ public class MainController {
 
             ObjectNode objectNode = new ObjectMapper().createObjectNode();
             objectNode.put("error", String.format("Please provide a %s!", errorMessage));
+            logService.saveLog(new Log(new Timestamp(new Date().getTime()),
+                    "/greeter",
+                    String.format("input=%s", objectNode.findValue("error"))));
             return objectNode;
         }
         else {
-            return new ObjectMapper().valueToTree(
-                    new Greet(name, title)
-            );
+            ObjectNode objectNode = new ObjectMapper().valueToTree(new Greet(name, title));
+            logService.saveLog(new Log(new Timestamp(new Date().getTime()),
+                    "/greeter",
+                    String.format("welcome_message=%s", objectNode.findValue("welcome_message"))));
+            return objectNode;
         }
     }
 
@@ -70,12 +92,19 @@ public class MainController {
         if (until == null) {
             ObjectNode objectNode = new ObjectMapper().createObjectNode();
             objectNode.put("error", "Please provide a number!");
+            logService.saveLog(new Log(new Timestamp(new Date().getTime()),
+                    "/dountil/{action}",
+                    String.format("input=%s", objectNode.findValue("error"))));
             return objectNode;
         }
         else {
-            return new ObjectMapper().valueToTree(
+            ObjectNode objectNode = new ObjectMapper().valueToTree(
                     new Until(until.findValue("until").asInt(), action)
             );
+            logService.saveLog(new Log(new Timestamp(new Date().getTime()),
+                    "/dountil/{action}",
+                    String.format("result=%s", objectNode.findValue("result"))));
+            return objectNode;
         }
     }
 
@@ -84,6 +113,9 @@ public class MainController {
         if (arrays == null) {
             ObjectNode objectNode = new ObjectMapper().createObjectNode();
             objectNode.put("error", "Please provide what to do with the numbers!");
+            logService.saveLog(new Log(new Timestamp(new Date().getTime()),
+                    "/arrays",
+                    String.format("input=%s", objectNode.findValue("error"))));
             return objectNode;
         }
         else {
@@ -95,10 +127,23 @@ public class MainController {
 
             String[] objectNodeArray = objectNodeString.substring(1, objectNodeString.length() - 1).split(",");
 
-            return new ObjectMapper().valueToTree(
+            ObjectNode objectNode = new ObjectMapper().valueToTree(
                     new ArraysResult(arrays.findValue("what").asText(),
                             Arrays.asList(objectNodeArray)
                     ));
+
+            logService.saveLog(new Log(new Timestamp(new Date().getTime()),
+                    "/arrays",
+                    String.format("result=%s", objectNode.findValue("result"))));
+
+            return objectNode;
         }
+    }
+
+    @GetMapping("/log")
+    public ObjectNode collectLogEntries() {
+        return new ObjectMapper().valueToTree(
+                logService.collectLogs()
+        );
     }
 }
