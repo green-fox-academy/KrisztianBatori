@@ -162,4 +162,25 @@ public class MainController {
                 logService.collectLogs()
         );
     }
+
+    @PostMapping(value = "/sith")
+    public @ResponseBody ObjectNode doUntil(@RequestBody(required = false) ObjectNode text) {
+        if (text == null) {
+            ObjectNode objectNode = new ObjectMapper().createObjectNode();
+            objectNode.put("error", "Feed me some text you have to, padawan young you are. Hmmm.");
+            logService.saveLog(new Log(new Timestamp(new Date().getTime()),
+                    "/sith",
+                    String.format("sith_text=%s", objectNode.findValue("error"))));
+            return objectNode;
+        }
+        else {
+            ObjectNode objectNode = new ObjectMapper().createObjectNode();
+            objectNode.put("sith_text",
+                    SithTextGenerator.generateSithText(text.findValue("text").asText()));
+            logService.saveLog(new Log(new Timestamp(new Date().getTime()),
+                    "/sith",
+                    String.format("sith_text=%s", objectNode.findValue("sith_text"))));
+            return objectNode;
+        }
+    }
 }
