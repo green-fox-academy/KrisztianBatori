@@ -86,6 +86,22 @@ public class MainController {
         }
     }
 
+    @GetMapping(value = "/appenda/{appendable}")
+    public ObjectNode appendA(@PathVariable(name = "appendable") String appendable) {
+        if (appendable == null) {
+            throw new ResourceNotFoundException();
+        }
+        else {
+            ObjectNode objectNode = new ObjectMapper().valueToTree(
+                    new AppendA(appendable)
+            );
+            logService.saveLog(new Log(new Timestamp(new Date().getTime()),
+                    String.format("/appenda/{%s}", appendable),
+                    String.format("appended=%s", objectNode.findValue("appended"))));
+            return objectNode;
+        }
+    }
+
     @PostMapping(value = "/dountil/{action}")
     public @ResponseBody ObjectNode doUntil(@PathVariable(name = "action") String action,
                                             @RequestBody(required = false) ObjectNode until) {
@@ -93,7 +109,7 @@ public class MainController {
             ObjectNode objectNode = new ObjectMapper().createObjectNode();
             objectNode.put("error", "Please provide a number!");
             logService.saveLog(new Log(new Timestamp(new Date().getTime()),
-                    "/dountil/{action}",
+                    String.format("/dountil/{%s}", action),
                     String.format("input=%s", objectNode.findValue("error"))));
             return objectNode;
         }
@@ -102,7 +118,7 @@ public class MainController {
                     new Until(until.findValue("until").asInt(), action)
             );
             logService.saveLog(new Log(new Timestamp(new Date().getTime()),
-                    "/dountil/{action}",
+                    String.format("/dountil/{%s}", action),
                     String.format("result=%s", objectNode.findValue("result"))));
             return objectNode;
         }
